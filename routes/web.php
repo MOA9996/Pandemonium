@@ -36,10 +36,10 @@ Route::middleware('auth')->group(function () {
     // Carrito — confirmar SIEMPRE antes de {prenda}
     Route::get('/carrito', [CarritoController::class, 'index'])->name('carrito.index');
     Route::post('/carrito/confirmar', [CarritoController::class, 'confirmar'])->name('carrito.confirmar');
+    Route::get('/carrito/pago', [CarritoController::class, 'crearPago'])->name('carrito.pago');
+    Route::get('/carrito/pago/exito', [CarritoController::class, 'pagoExito'])->name('carrito.pago.exito');
     Route::post('/carrito/{prenda}', [CarritoController::class, 'añadir'])->name('carrito.añadir');
     Route::delete('/carrito/{prenda}', [CarritoController::class, 'quitar'])->name('carrito.quitar');
-    Route::get('/carrito/pago', [CarritoController::class, 'crearPago'])->name('carrito.pago');
-    Route::post('/carrito/completar', [CarritoController::class, 'completar'])->name('carrito.completar');
 });
 
 require __DIR__.'/auth.php';
