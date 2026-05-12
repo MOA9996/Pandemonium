@@ -9,9 +9,7 @@ export default function Index({ carrito }) {
     };
 
     const confirmar = () => {
-        if (confirm('¿Confirmas la compra?')) {
-            router.post(route('carrito.confirmar'));
-        }
+        router.get(route('carrito.pago'));
     };
 
     return (

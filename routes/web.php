@@ -38,6 +38,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/carrito/confirmar', [CarritoController::class, 'confirmar'])->name('carrito.confirmar');
     Route::post('/carrito/{prenda}', [CarritoController::class, 'añadir'])->name('carrito.añadir');
     Route::delete('/carrito/{prenda}', [CarritoController::class, 'quitar'])->name('carrito.quitar');
+    Route::get('/carrito/pago', [CarritoController::class, 'crearPago'])->name('carrito.pago');
+    Route::post('/carrito/completar', [CarritoController::class, 'completar'])->name('carrito.completar');
 });
 
 require __DIR__.'/auth.php';
