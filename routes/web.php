@@ -8,8 +8,6 @@ use App\Http\Controllers\CarritoController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-
-
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -28,16 +26,16 @@ Route::middleware('auth')->group(function () {
     // Prendas
     Route::middleware('admin')->group(function () {
         Route::resource('prendas', PrendaController::class)->except(['index', 'show']);
-        // Panel de admin gestión de compras
         Route::get('/admin/compras', [AdminController::class, 'compras'])->name('admin.compras');
     });
     Route::resource('prendas', PrendaController::class)->only(['index', 'show']);
 
-    // Carrito — confirmar SIEMPRE antes de {prenda}
+    // Carrito — rutas estáticas SIEMPRE antes de {prenda}
     Route::get('/carrito', [CarritoController::class, 'index'])->name('carrito.index');
     Route::post('/carrito/confirmar', [CarritoController::class, 'confirmar'])->name('carrito.confirmar');
     Route::get('/carrito/pago', [CarritoController::class, 'crearPago'])->name('carrito.pago');
-    Route::get('/carrito/pago/exito', [CarritoController::class, 'pagoExito'])->name('carrito.pago.exito');
+    Route::post('/carrito/completar', [CarritoController::class, 'completar'])->name('carrito.completar');
+    Route::get('/carrito/exito', [CarritoController::class, 'pagoExito'])->name('carrito.exito');
     Route::post('/carrito/{prenda}', [CarritoController::class, 'añadir'])->name('carrito.añadir');
     Route::delete('/carrito/{prenda}', [CarritoController::class, 'quitar'])->name('carrito.quitar');
 });
