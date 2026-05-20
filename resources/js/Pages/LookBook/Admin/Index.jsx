@@ -46,6 +46,12 @@ export default function AdminIndex({ lookbooks }) {
                                         </button>
                                     )}
                                     <button
+                                        onClick={() => router.get(route('lookbook.edit', lookbook.id))}
+                                        className="border border-gray-500 text-gray-600 px-3 py-1 rounded text-sm"
+                                    >
+                                        Editar
+                                    </button>
+                                    <button
                                         onClick={() => {
                                             if (confirm('¿Eliminar este lookbook?')) {
                                                 router.delete(route('lookbook.destroy', lookbook.id));

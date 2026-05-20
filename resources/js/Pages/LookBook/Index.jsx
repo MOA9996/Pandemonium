@@ -11,7 +11,7 @@ export default function Index({ lookbook }) {
     if (!lookbook || lookbook.fotos.length === 0) {
         return (
             <div className="min-h-screen bg-black flex flex-col items-center justify-center text-white gap-4">
-                <h1 className="text-4xl font-bold tracking-widest mb-8">PANDEMONIUM</h1>
+                <h1 className="text-4xl font-bold tracking-widest mb-8" style={{ fontFamily: 'Cinzel, serif' }}>PANDEMONIUM</h1>
                 <button
                     onClick={() => router.get(route('prendas.index'))}
                     className="border border-white text-white px-8 py-3 tracking-widest hover:bg-white hover:text-black transition w-48"
@@ -41,7 +41,7 @@ export default function Index({ lookbook }) {
 
             {/* NAVBAR */}
             <nav className="flex justify-between items-center px-8 py-6 z-10">
-                <h1 className="text-2xl font-bold tracking-widest">PANDEMONIUM</h1>
+                <h1 className="text-2xl font-bold tracking-widest" style={{ fontFamily: 'Cinzel, serif' }}>PANDEMONIUM</h1>
                 <div className="flex gap-6 text-sm tracking-widest items-center">
                     <button
                         onClick={() => router.get(route('prendas.index'))}
@@ -60,7 +60,9 @@ export default function Index({ lookbook }) {
             {/* TÍTULO COLECCIÓN */}
             <div className="text-center py-4">
                 <p className="text-xs tracking-[0.4em] text-gray-500 uppercase">Colección</p>
-                <h2 className="text-3xl font-light tracking-widest mt-1">{lookbook.titulo}</h2>
+                <h2 style={{ fontFamily: 'Cinzel, serif' }} className="text-3xl tracking-widest mt-1">
+                    {lookbook.titulo}
+                </h2>
                 {lookbook.descripcion && (
                     <p className="text-gray-400 text-sm mt-2 max-w-lg mx-auto">{lookbook.descripcion}</p>
                 )}

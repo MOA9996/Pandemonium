@@ -6,6 +6,7 @@ use Illuminate\Foundation\Application;
 use App\Http\Controllers\PrendaController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\LookbookController;
+use App\Http\Controllers\OpcionController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -32,8 +33,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/lookbooks', [LookbookController::class, 'adminIndex'])->name('lookbook.admin');
     Route::get('/admin/lookbooks/crear', [LookbookController::class, 'create'])->name('lookbook.create');
     Route::post('/admin/lookbooks', [LookbookController::class, 'store'])->name('lookbook.store');
+    Route::get('/admin/lookbooks/{lookbook}/edit', [LookbookController::class, 'edit'])->name('lookbook.edit');
+    Route::put('/admin/lookbooks/{lookbook}', [LookbookController::class, 'update'])->name('lookbook.update');
     Route::patch('/admin/lookbooks/{lookbook}/activar', [LookbookController::class, 'activar'])->name('lookbook.activar');
     Route::delete('/admin/lookbooks/{lookbook}', [LookbookController::class, 'destroy'])->name('lookbook.destroy');
+
+    // Opciones dinámicas
+    Route::post('/admin/opciones', [OpcionController::class, 'store'])->name('opciones.store');
 });
 
 // Ruta pública de show DESPUÉS de create para evitar conflictos
