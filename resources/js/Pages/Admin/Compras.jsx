@@ -8,7 +8,15 @@ export default function Compras({ compras }) {
         <AuthenticatedLayout>
             <div className="max-w-6xl mx-auto py-6 px-4">
                 <div className="flex justify-between items-center mb-6">
-                    <h1 className="text-2xl font-bold">Panel de administración — Compras</h1>
+                    <div className="flex items-center gap-4">
+                        <button
+                            onClick={() => router.get(route('admin.index'))}
+                            className="text-sm text-gray-500 underline"
+                        >
+                            ← Panel admin
+                        </button>
+                        <h1 className="text-2xl font-bold">Compras</h1>
+                    </div>
                     <p className="text-gray-500 text-sm">{compras.length} compras · Total: {total.toFixed(2)}€</p>
                 </div>
 
