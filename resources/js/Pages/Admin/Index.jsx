@@ -4,30 +4,29 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 export default function Index() {
     return (
         <AuthenticatedLayout>
-            <div className="max-w-4xl mx-auto py-6 px-4">
-                <h1 className="text-2xl font-bold mb-8">Panel de administración</h1>
+            <div style={{ maxWidth: '800px', margin: '0 auto', padding: '2rem 1rem' }}>
+                <h1 style={{ fontFamily: 'Cinzel, serif', color: '#fff', fontSize: '20px', letterSpacing: '0.2em', marginBottom: '0.5rem' }}>
+                    Panel de Administración
+                </h1>
+                <div style={{ color: '#8B0000', fontSize: '11px', letterSpacing: '0.3em', marginBottom: '2.5rem' }}>— ✦ —</div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-
-                    {/* Compras */}
-                    <div
-                        onClick={() => router.get(route('admin.compras'))}
-                        className="border rounded-lg p-6 cursor-pointer hover:shadow-md transition"
-                    >
-
-                        <h2 className="text-xl font-semibold mb-1">Gestión de pedidos</h2>
-                        <p className="text-gray-500 text-sm">Ver y gestionar todos los pedidos realizados.</p>
-                    </div>
-
-                    {/* Lookbooks */}
-                    <div
-                        onClick={() => router.get(route('lookbook.admin'))}
-                        className="border rounded-lg p-6 cursor-pointer hover:shadow-md transition"
-                    >
-                        <h2 className="text-xl font-semibold mb-1">Lookbooks</h2>
-                        <p className="text-gray-500 text-sm">Crear y gestionar las colecciones del lookbook.</p>
-                    </div>
-
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1px', background: '#1a0000' }}>
+                    {[
+                        { titulo: 'Gestión de Pedidos', desc: 'Ver y gestionar todos los pedidos realizados.', ruta: 'admin.compras' },
+                        { titulo: 'Lookbooks', desc: 'Crear y gestionar las colecciones del lookbook.', ruta: 'lookbook.admin' },
+                    ].map(({ titulo, desc, ruta }) => (
+                        <div
+                            key={ruta}
+                            onClick={() => router.get(route(ruta))}
+                            style={{ background: '#0a0a0a', padding: '2rem', cursor: 'pointer', transition: 'background 0.2s' }}
+                            onMouseEnter={e => e.currentTarget.style.background = '#0f0000'}
+                            onMouseLeave={e => e.currentTarget.style.background = '#0a0a0a'}
+                        >
+                            <h2 style={{ fontFamily: 'Cinzel, serif', color: '#ddd', fontSize: '14px', letterSpacing: '0.1em', marginBottom: '8px' }}>{titulo}</h2>
+                            <p style={{ color: '#444', fontSize: '11px', letterSpacing: '0.05em', lineHeight: '1.6' }}>{desc}</p>
+                            <div style={{ color: '#8B0000', fontSize: '18px', marginTop: '1rem' }}>→</div>
+                        </div>
+                    ))}
                 </div>
             </div>
         </AuthenticatedLayout>

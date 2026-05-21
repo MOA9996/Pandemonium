@@ -36,6 +36,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/lookbooks/{lookbook}/edit', [LookbookController::class, 'edit'])->name('lookbook.edit');
     Route::put('/admin/lookbooks/{lookbook}', [LookbookController::class, 'update'])->name('lookbook.update');
     Route::patch('/admin/lookbooks/{lookbook}/activar', [LookbookController::class, 'activar'])->name('lookbook.activar');
+    Route::patch('/admin/lookbooks/{lookbook}/desactivar', [LookbookController::class, 'desactivar'])->name('lookbook.desactivar');
     Route::delete('/admin/lookbooks/{lookbook}', [LookbookController::class, 'destroy'])->name('lookbook.destroy');
 
     // Opciones dinámicas

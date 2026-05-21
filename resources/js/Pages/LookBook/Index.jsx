@@ -10,20 +10,26 @@ export default function Index({ lookbook }) {
 
     if (!lookbook || lookbook.fotos.length === 0) {
         return (
-            <div className="min-h-screen bg-black flex flex-col items-center justify-center text-white gap-4">
-                <h1 className="text-4xl font-bold tracking-widest mb-8" style={{ fontFamily: 'Cinzel, serif' }}>PANDEMONIUM</h1>
+            <div style={{ minHeight: '100vh', background: '#080808', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '1rem' }}>
+                <h1 style={{ fontFamily: 'Cinzel, serif', color: '#fff', fontSize: '32px', letterSpacing: '0.4em', marginBottom: '2rem' }}>
+                    PANDEMONIUM
+                </h1>
                 <button
                     onClick={() => router.get(route('prendas.index'))}
-                    className="border border-white text-white px-8 py-3 tracking-widest hover:bg-white hover:text-black transition w-48"
+                    style={{ border: '0.5px solid #8B0000', color: '#8B0000', background: 'transparent', padding: '12px 32px', fontSize: '11px', letterSpacing: '0.3em', cursor: 'pointer', width: '200px', transition: 'all 0.2s', textTransform: 'uppercase', fontFamily: 'Cinzel, serif' }}
+                    onMouseEnter={e => { e.currentTarget.style.background = '#8B0000'; e.currentTarget.style.color = '#fff'; }}
+                    onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#8B0000'; }}
                 >
-                    CATÁLOGO
+                    Catálogo
                 </button>
                 {!user && (
                     <Link
                         href="/login"
-                        className="border border-white text-white px-8 py-3 tracking-widest hover:bg-white hover:text-black transition w-48 text-center"
+                        style={{ border: '0.5px solid #333', color: '#555', background: 'transparent', padding: '12px 32px', fontSize: '11px', letterSpacing: '0.3em', cursor: 'pointer', width: '200px', transition: 'all 0.2s', textTransform: 'uppercase', fontFamily: 'Cinzel, serif', textDecoration: 'none', display: 'block', textAlign: 'center' }}
+                        onMouseEnter={e => { e.currentTarget.style.borderColor = '#666'; e.currentTarget.style.color = '#aaa'; }}
+                        onMouseLeave={e => { e.currentTarget.style.borderColor = '#333'; e.currentTarget.style.color = '#555'; }}
                     >
-                        ENTRAR
+                        Entrar
                     </Link>
                 )}
             </div>
@@ -70,16 +76,8 @@ export default function Index({ lookbook }) {
 
             {/* CARRUSEL */}
             <div className="flex-1 flex items-center justify-center relative px-4 pb-8">
+                <button onClick={anterior} className="absolute left-4 z-10 text-white text-3xl hover:text-gray-400 transition">‹</button>
 
-                {/* Botón anterior */}
-                <button
-                    onClick={anterior}
-                    className="absolute left-4 z-10 text-white text-3xl hover:text-gray-400 transition"
-                >
-                    ‹
-                </button>
-
-                {/* Imagen */}
                 <div
                     className="w-full max-w-2xl cursor-pointer"
                     onClick={() => router.get(route('prendas.index', { coleccion: lookbook.titulo }))}
@@ -98,13 +96,7 @@ export default function Index({ lookbook }) {
                     </AnimatePresence>
                 </div>
 
-                {/* Botón siguiente */}
-                <button
-                    onClick={siguiente}
-                    className="absolute right-4 z-10 text-white text-3xl hover:text-gray-400 transition"
-                >
-                    ›
-                </button>
+                <button onClick={siguiente} className="absolute right-4 z-10 text-white text-3xl hover:text-gray-400 transition">›</button>
             </div>
 
             {/* INDICADORES */}
