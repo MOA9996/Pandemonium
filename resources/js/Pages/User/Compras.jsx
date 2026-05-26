@@ -2,73 +2,88 @@ import { router } from '@inertiajs/react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 
 export default function Compras({ compras }) {
+    const estadoStyle = (estado) => {
+        const map = {
+            paid:     { color: '#4a8a4a', background: '#0a1a0a', border: '#1a4a1a', label: 'Pagado' },
+            pending:  { color: '#8a7a4a', background: '#1a1a0a', border: '#4a3a1a', label: 'Pendiente' },
+            refunded: { color: '#4a6a8a', background: '#0a0f1a', border: '#1a2a4a', label: 'Devuelto' },
+            failed:   { color: '#8a4a4a', background: '#1a0a0a', border: '#4a1a1a', label: 'Fallido' },
+        };
+        return map[estado] || map.failed;
+    };
+
     return (
         <AuthenticatedLayout>
-            <div className="max-w-4xl mx-auto py-6 px-4">
-                <h1 className="text-2xl font-bold mb-6">Mis compras</h1>
+            <style>{`
+                .btn-catalogo:hover { background: #8B0000 !important; color: #fff !important; }
+                .compra-item:hover { border-color: #2a0000 !important; }
+            `}</style>
+
+            <div style={{ maxWidth: '800px', margin: '0 auto', padding: '2rem 1rem' }}>
+
+                <h1 style={{ fontFamily: 'Cinzel, serif', color: '#fff', fontSize: '20px', letterSpacing: '0.2em', marginBottom: '0.5rem' }}>
+                    Mis Compras
+                </h1>
+                <div style={{ color: '#ddd', fontSize: '11px', letterSpacing: '0.3em', marginBottom: '2rem' }}>— ✦ —</div>
 
                 {compras.length === 0 ? (
-                    <div className="text-center py-12">
-                        <p className="text-gray-500 mb-4">Aún no has realizado ninguna compra.</p>
+                    <div style={{ textAlign: 'center', padding: '4rem 0' }}>
+                        <p style={{ color: '#444', fontSize: '12px', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '1.5rem' }}>
+                            Aún no has realizado ninguna compra.
+                        </p>
                         <button
+                            className="btn-catalogo"
                             onClick={() => router.get(route('prendas.index'))}
-                            className="bg-black text-white px-6 py-2 rounded"
+                            style={{ background: 'transparent', border: '0.5px solid #8B0000', color: '#8B0000', padding: '12px 24px', fontFamily: 'Cinzel, serif', fontSize: '11px', letterSpacing: '0.2em', cursor: 'pointer', transition: 'all 0.2s', textTransform: 'uppercase' }}
                         >
                             Ver catálogo
                         </button>
                     </div>
                 ) : (
-                    <div className="flex flex-col gap-4">
-                        {compras.map(compra => (
-                            <div key={compra.id} className="flex items-center gap-4 border rounded-lg p-4">
-                                {compra.prenda?.imagen ? (
-                                    <img
-                                        src={`/storage/${compra.prenda.imagen}`}
-                                        alt={compra.prenda.nombre}
-                                        className="w-24 h-24 object-cover rounded"
-                                    />
-                                ) : (
-                                    <div className="w-24 h-24 bg-gray-100 rounded flex items-center justify-center text-gray-400 text-xs">
-                                        Sin imagen
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1px', background: '#1a0000' }}>
+                        {compras.map(compra => {
+                            const s = estadoStyle(compra.estado);
+                            return (
+                                <div
+                                    key={compra.id}
+                                    className="compra-item"
+                                    style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', background: '#0a0a0a', padding: '1rem 1.2rem', transition: 'border-color 0.2s' }}
+                                >
+                                    {compra.prenda?.imagen ? (
+                                        <img
+                                            src={`/storage/${compra.prenda.imagen}`}
+                                            alt={compra.prenda.nombre}
+                                            style={{ width: '80px', height: '80px', objectFit: 'cover', border: '0.5px solid #1a0000', flexShrink: 0 }}
+                                        />
+                                    ) : (
+                                        <div style={{ width: '80px', height: '80px', background: '#111', border: '0.5px solid #1a0000', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#333', fontSize: '10px', flexShrink: 0 }}>
+                                            Sin imagen
+                                        </div>
+                                    )}
+
+                                    <div style={{ flex: 1 }}>
+                                        <div style={{ fontFamily: 'Cinzel, serif', color: '#ddd', fontSize: '13px', letterSpacing: '0.05em', marginBottom: '4px' }}>
+                                            {compra.prenda?.nombre ?? 'Prenda eliminada'}
+                                        </div>
+                                        <div style={{ color: '#444', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '4px' }}>
+                                            {[compra.prenda?.talla && `Talla: ${compra.prenda.talla}`, compra.prenda?.color && `Color: ${compra.prenda.color}`].filter(Boolean).join(' · ')}
+                                        </div>
+                                        <div style={{ color: '#333', fontSize: '10px', letterSpacing: '0.05em' }}>
+                                            {new Date(compra.fecha_compra).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}
+                                        </div>
                                     </div>
-                                )}
 
-                                <div className="flex-1">
-                                    <h2 className="font-semibold text-lg">
-                                        {compra.prenda?.nombre ?? 'Prenda eliminada'}
-                                    </h2>
-                                    <p className="text-sm text-gray-500">
-                                        {compra.prenda?.talla && `Talla: ${compra.prenda.talla} · `}
-                                        {compra.prenda?.color && `Color: ${compra.prenda.color}`}
-                                    </p>
-                                    <p className="text-sm text-gray-400 mt-1">
-                                        {new Date(compra.fecha_compra).toLocaleDateString('es-ES', {
-                                            year: 'numeric',
-                                            month: 'long',
-                                            day: 'numeric',
-                                        })}
-                                    </p>
+                                    <div style={{ textAlign: 'right', display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'flex-end' }}>
+                                        <div style={{ color: '#ddd', fontFamily: 'Cinzel, serif', fontSize: '14px' }}>
+                                            {compra.precio_pagado}€
+                                        </div>
+                                        <span style={{ padding: '3px 8px', fontSize: '9px', letterSpacing: '0.1em', textTransform: 'uppercase', color: s.color, background: s.background, border: `0.5px solid ${s.border}` }}>
+                                            {s.label}
+                                        </span>
+                                    </div>
                                 </div>
-
-                                <div className="text-right">
-                                    <p className="font-bold text-lg">{compra.precio_pagado}€</p>
-                                    <span className={`text-xs px-2 py-1 rounded-full ${
-                                        compra.estado === 'paid'
-                                            ? 'bg-green-100 text-green-700'
-                                            : compra.estado === 'pending'
-                                                ? 'bg-yellow-100 text-yellow-700'
-                                                : compra.estado === 'refunded'
-                                                    ? 'bg-blue-100 text-blue-700'
-                                                    : 'bg-red-100 text-red-700'
-                                    }`}>
-                                        {compra.estado === 'paid' && 'Pagado'}
-                                        {compra.estado === 'pending' && 'Pendiente'}
-                                        {compra.estado === 'refunded' && 'Devuelto'}
-                                        {compra.estado === 'failed' && 'Fallido'}
-                                    </span>
-                                </div>
-                            </div>
-                        ))}
+                            );
+                        })}
                     </div>
                 )}
             </div>

@@ -35,17 +35,17 @@ export default function AdminIndex({ lookbooks }) {
                 ) : (
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '1px', background: '#1a0000' }}>
                         {lookbooks.map(lookbook => (
-                            <div key={lookbook.id} style={{ background: '#0a0a0a', padding: '1rem 1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem' }}>
+                            <div key={lookbook.id} style={{ background: '#161616', padding: '1rem 1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem' }}>
 
                                 {/* MINIATURA */}
                                 {lookbook.fotos?.[0] ? (
                                     <img
                                         src={`/storage/${lookbook.fotos[0].imagen}`}
                                         alt={lookbook.titulo}
-                                        style={{ width: '60px', height: '60px', objectFit: 'cover', border: '0.5px solid #1a0000', flexShrink: 0 }}
+                                        style={{ width: '60px', height: '60px', objectFit: 'cover', border: '0.5px solid #222', flexShrink: 0 }}
                                     />
                                 ) : (
-                                    <div style={{ width: '60px', height: '60px', background: '#111', border: '0.5px solid #1a0000', flexShrink: 0 }} />
+                                    <div style={{ width: '60px', height: '60px', background: '#1f1f1f', border: '0.5px solid #222', flexShrink: 0 }} />
                                 )}
 
                                 {/* INFO */}
@@ -58,8 +58,8 @@ export default function AdminIndex({ lookbooks }) {
                                             </span>
                                         )}
                                     </div>
-                                    {lookbook.descripcion && <p style={{ color: '#444', fontSize: '11px', marginBottom: '4px' }}>{lookbook.descripcion}</p>}
-                                    <span style={{ color: '#333', fontSize: '9px', letterSpacing: '0.1em' }}>{lookbook.fotos_count} fotos</span>
+                                    {lookbook.descripcion && <p style={{ color: '#777', fontSize: '11px', marginBottom: '4px' }}>{lookbook.descripcion}</p>}
+                                    <span style={{ color: '#555', fontSize: '9px', letterSpacing: '0.1em' }}>{lookbook.fotos_count} fotos</span>
                                 </div>
 
                                 {/* BOTONES */}
