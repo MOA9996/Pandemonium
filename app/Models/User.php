@@ -56,5 +56,6 @@ class User extends Authenticatable
     }
 
 
+
 // No necesitas prendasCompradas() porque puedes acceder a través de compras
 }
