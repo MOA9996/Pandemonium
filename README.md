@@ -1,58 +1,120 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Pandemonium
+ 
+Tienda online para una marca de ropa alternativa, desarrollada con Laravel e Inertia.js. Incluye lookbook editorial, catálogo con filtros dinámicos, pasarela de pago con Stripe y un panel de administración completo.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
-
-## About Laravel
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
-
+<img width="1857" height="972" alt="imagen" src="https://github.com/user-attachments/assets/fc5f085b-ea53-4936-9e1a-c7018e6595cb" />
+<img width="1680" height="882" alt="imagen" src="https://github.com/user-attachments/assets/9b6abe92-6be9-4f43-80c4-aa58254eadd7" />
+<img width="1655" height="878" alt="imagen" src="https://github.com/user-attachments/assets/9d16e40f-ac41-4afb-acda-e1fe02588140" />
+<img width="1734" height="920" alt="imagen" src="https://github.com/user-attachments/assets/a8c41d6e-84c3-47a6-8eed-4da10dcc3e9a" />
+<img width="1762" height="950" alt="imagen" src="https://github.com/user-attachments/assets/1f7cf611-cd1b-4092-9a30-d896aed9b3d5" />
+<img width="1490" height="803" alt="imagen" src="https://github.com/user-attachments/assets/c9df9acd-6272-47bb-a426-72bdf3f055f7" />
+<img width="1841" height="976" alt="imagen" src="https://github.com/user-attachments/assets/503f56fd-c157-4deb-84c4-bed7a8e0e385" />
+<img width="1468" height="962" alt="imagen" src="https://github.com/user-attachments/assets/23d69a07-2c5f-4fff-9292-179890625a4b" />
+---
+ 
+## Descripción
+ 
+Pandemonium es una aplicación de comercio electrónico desarrollada como Trabajo de Fin de Grado del ciclo de Desarrollo de Aplicaciones Web. El proyecto da respuesta a la necesidad de una marca de ropa alternativa de disponer de un espacio de venta propio, con una identidad visual definida, frente a plataformas generalistas como Vinted o Wallapop.
+ 
+A diferencia de una tienda convencional, la página de inicio no muestra directamente el catálogo, sino un lookbook con las imágenes de la colección activa. Desde ahí el usuario accede al catálogo, a la ficha de cada prenda y al proceso de compra.
+ 
+## Características
+ 
+- Lookbook en la página de inicio con carrusel de la colección activa
+- Catálogo con filtros por talla, color, corte, categoría, colección y precio
+- Ficha de producto con carrusel de imágenes
+- Carrito de sesión y pago con Stripe integrado en la página, sin redirecciones externas
+- Historial de compras por usuario
+- Panel de administración para gestionar prendas, lookbooks, pedidos y usuarios
+- Opciones de catálogo (tallas, colores, colecciones) editables desde el panel
+- Control de acceso por roles mediante middleware
+- Identidad visual propia: interfaz oscura, tipografía Cinzel y acentos en rojo burdeos
+## Tecnologías
+ 
+| Capa | Tecnología |
+|------|-----------|
+| Backend | Laravel 13 (PHP 8.4), Eloquent ORM |
+| Frontend | React 18, Inertia.js |
+| Base de datos | MySQL (Docker en desarrollo) |
+| Pagos | Stripe Payment Elements |
+| Bundler | Vite |
+| Animaciones | Motion |
+| Estilos | Tailwind CSS |
+| Despliegue | Railway |
+ 
+El proyecto emplea Inertia.js como capa de comunicación entre Laravel y React, lo que permite construir una SPA sin necesidad de una API REST independiente. Los controladores devuelven los datos directamente a los componentes de React como props, manteniendo la autenticación basada en sesiones de Laravel.
+ 
+## Requisitos
+ 
+- PHP 8.4
+- Composer
+- Node.js
+- MySQL
+## Instalación
+ 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone https://github.com/MOA9996/pandemonium.git
+cd pandemonium
+ 
+composer install
+npm install
+ 
+cp .env.example .env
+php artisan key:generate
 ```
-
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+ 
+Configura las credenciales de la base de datos y de Stripe en el archivo `.env`:
+ 
+```
+DB_DATABASE=pandemonium
+DB_USERNAME=usuario
+DB_PASSWORD=contraseña
+ 
+STRIPE_KEY=pk_test_xxxxx
+STRIPE_SECRET=sk_test_xxxxx
+```
+ 
+Ejecuta las migraciones y crea el enlace simbólico del almacenamiento (necesario para servir las imágenes):
+ 
+```bash
+php artisan migrate
+php artisan storage:link
+```
+ 
+Inicia el servidor de desarrollo y el compilador de assets en terminales separadas:
+ 
+```bash
+php artisan serve
+npm run dev
+```
+ 
+La aplicación queda disponible en `http://localhost:8000`.
+ 
+## Estructura del proyecto
+ 
+```
+pandemonium/
+├── app/
+│   ├── Http/Controllers/    # PrendaController, CarritoController, LookbookController, AdminController...
+│   ├── Http/Middleware/     # AdminMiddleware (control de acceso por rol)
+│   └── Models/              # User, Prenda, Compra, Lookbook, Opcion...
+├── database/migrations/     # Definición de las tablas
+├── resources/js/
+│   ├── Pages/               # Vistas (Prendas, Carrito, Admin, Auth...)
+│   ├── Layouts/             # AuthenticatedLayout
+│   └── Components/
+├── routes/web.php
+└── storage/app/public/      # Imágenes de prendas y lookbooks
+```
+ 
+## Estado del proyecto
+ 
+La aplicación es funcional y se encuentra desplegada en Railway. Funcionalidades previstas para próximas versiones:
+ 
+- Diseño responsive para dispositivos móviles
+- Webhooks de Stripe para la confirmación de pagos
+- Configuración de Stripe en modo producción
+- Normalización de las imágenes del catálogo
+## Autor
+ 
+Miguel Ollés Anglés — Trabajo de Fin de Grado, Desarrollo de Aplicaciones Web (2026).
